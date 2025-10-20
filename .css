@@ -1,225 +1,320 @@
-/* Paleta de colores */
+/*
+  Paleta de Colores Mejorada:
+  Se ha elegido una paleta de colores moderna y de alto contraste,
+  basada en un tema oscuro que es muy popular en el diseño web actual.
+  - Fondo oscuro para reducir la fatiga visual.
+  - Acento de color vibrante (cian) para elementos interactivos.
+  - Tonos de gris claro para el texto, mejorando la legibilidad.
+*/
 :root {
-  --color-primario: #0077ff;
-  --color-secundario: #7fd81a;
-  --color-claro: #f5f5f5;
-  --color-gris: #d0d0d0;
-  --color-texto: #e6e6e6;
+  --color-fondo: #0a192f; /* Azul marino muy oscuro */
+  --color-secundario: #112240; /* Azul marino un poco más claro para tarjetas */
+  --color-primario: #64ffda; /* Cian vibrante como color de acento */
+  --color-texto-principal: #ccd6f6; /* Texto principal, gris muy claro */
+  --color-texto-secundario: #8892b0; /* Texto secundario, un gris más suave */
+  --sombra-color: rgba(2, 12, 27, 0.7); /* Sombra sutil y oscura */
 }
 
-/* Reset básico */
+/*
+  Reset y Estilos Globales:
+  - Se añade 'scroll-behavior: smooth' para un desplazamiento suave al hacer clic en enlaces de anclaje.
+  - Se establece una fuente base y colores de fondo/texto para todo el sitio.
+*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-secundario);
-  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  color: var(--color-texto-principal);
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
 }
 
-/* Encabezado */
+/*
+  Encabezado (Header):
+  - Se agrega un efecto de desenfoque de fondo (backdrop-filter) para un estilo "glassmorphism" moderno.
+  - Una línea inferior sutil ayuda a separar el encabezado del contenido al hacer scroll.
+*/
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 10;
+  background-color: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-secundario);
+  transition: top 0.3s ease-in-out;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--color-primario);
+  text-decoration: none;
 }
 
+/*
+  Navegación:
+  - Se ha añadido un efecto visual a los enlaces para que sean más atractivos.
+*/
 nav ul {
   display: flex;
   list-style: none;
+  align-items: center;
 }
 
 nav ul li {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
 }
 
 nav ul li a {
-  color: var(--color-texto);
+  color: var(--color-texto-principal);
   text-decoration: none;
-  transition: 0.3s;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  position: relative;
 }
 
 nav ul li a:hover {
   color: var(--color-primario);
 }
 
-/* Hero */
+/*
+  Sección Hero:
+  - El degradado ahora usa los colores de la nueva paleta para una mejor integración.
+  - Se ha mejorado el estilo del botón para un diseño más elegante (outline que se rellena al pasar el mouse).
+*/
 .hero {
-  background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(10,25,47,0.8)),
-              url('img/hero-bg.jpg') center/cover no-repeat;
-  height: 100vh;
+  background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+              url('https://placehold.co/1920x1080/0a192f/112240?text=Hero+Image') center/cover no-repeat;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Tamaño de fuente adaptable */
   margin-bottom: 1rem;
+  color: #e6f1ff; /* Un blanco más puro para el título principal */
 }
 
 .hero-content p {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-texto-secundario);
 }
 
 .btn {
-  background: var(--color-primario);
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+  background: transparent;
+  color: var(--color-primario);
+  padding: 0.8rem 1.8rem;
+  border: 1px solid var(--color-primario);
+  border-radius: 5px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  font-weight: bold;
 }
 
 .btn:hover {
-  background: #005fd1;
+  background: rgba(100, 255, 218, 0.1);
 }
 
-/* Servicios */
-.servicios {
-  padding: 5rem 2rem;
+/*
+  Estilo Común para Secciones:
+  - Se crea una clase '.section' para unificar el padding y el ancho máximo,
+    evitando repetición de código y asegurando consistencia.
+*/
+.section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
   text-align: center;
-  background: var(--color-claro);
-  color: #222;
+  margin-bottom: 3rem;
+  position: relative;
+  color: #e6f1ff;
 }
 
-.servicios h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+/* Línea decorativa para los títulos de sección */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--color-primario);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
 }
 
+/*
+  Sección de Servicios y Tarjetas (Cards):
+  - Las tarjetas ahora usan el color secundario de fondo y una sombra más sutil.
+  - Al pasar el mouse, la tarjeta se eleva y su sombra se expande para un efecto dinámico.
+*/
 .servicios-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .card {
-  background: white;
+  background: var(--color-secundario);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  padding: 1.5rem;
-  transition: transform 0.3s;
+  box-shadow: 0 10px 30px -15px var(--sombra-color);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px -15px var(--sombra-color);
 }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
+.card h3 {
+  color: #e6f1ff;
   margin-bottom: 1rem;
 }
 
-/* Galería */
-.galeria {
-  padding: 5rem 2rem;
-  text-align: center;
+.card p {
+  color: var(--color-texto-secundario);
 }
 
-.galeria h2 {
-  margin-bottom: 2rem;
-}
-
+/*
+  Galería:
+  - Se aplica un filtro sutil a las imágenes que se quita al pasar el mouse,
+    creando un efecto de enfoque agradable.
+*/
 .galeria-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
 
 .galeria-grid img {
   width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(50%) brightness(0.8);
 }
 
 .galeria-grid img:hover {
   transform: scale(1.05);
+  filter: grayscale(0%) brightness(1);
 }
 
-/* Contacto */
+/*
+  Formulario de Contacto:
+  - Los campos del formulario han sido rediseñados para encajar con el tema oscuro.
+  - Se añade un efecto de foco claro para mejorar la usabilidad.
+*/
 .contacto {
-  padding: 5rem 2rem;
-  text-align: center;
-  background: var(--color-claro);
-  color: #222;
+  background-color: var(--color-fondo); /* Aseguramos consistencia */
 }
 
 form {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
 }
 
-input, textarea, button {
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  border: 1px solid var(--color-gris);
+input, textarea {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--color-secundario);
   border-radius: 5px;
   font-size: 1rem;
+  background-color: var(--color-secundario);
+  color: var(--color-texto-principal);
+  transition: border-color 0.3s ease;
 }
 
-button {
-  background: var(--color-primario);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
 }
 
-button:hover {
-  background: #005fd1;
+textarea {
+  resize: vertical;
+  min-height: 150px;
 }
 
-/* Footer */
+/*
+  Footer:
+  - Estilo simplificado y alineado con la nueva paleta.
+*/
 footer {
   text-align: center;
   padding: 2rem;
   background: #000;
-  color: var(--color-texto);
+  color: var(--color-texto-secundario);
 }
 
 footer .redes a {
-  color: var(--color-primario);
+  color: var(--color-texto-secundario);
   text-decoration: none;
-  margin: 0 0.5rem;
-  transition: 0.3s;
+  margin: 0 0.75rem;
+  font-size: 1.5rem; /* Iconos más grandes */
+  transition: color 0.3s ease;
 }
 
 footer .redes a:hover {
-  color: white;
+  color: var(--color-primario);
 }
 
-/* Responsive */
+/*
+  Diseño Responsivo (Responsive):
+  - Ajustes para pantallas más pequeñas.
+  - El código original para ocultar la navegación se mantiene, pero necesitaría
+    JavaScript para mostrar/ocultar el menú con un botón (hamburguesa).
+*/
 @media (max-width: 768px) {
-  nav ul {
+  header {
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Este es un ejemplo de cómo podría funcionar el menú móvil con JS */
+  /*
+  nav .nav-links {
+    display: none; // oculto por defecto
+  }
+
+  nav.active .nav-links {
+    display: flex; // se muestra cuando el nav tiene la clase 'active'
     flex-direction: column;
-    background: rgba(0,0,0,0.9);
     position: absolute;
-    top: 70px;
+    top: 100%;
     right: 0;
-    padding: 1rem;
-    display: none;
+    width: 100%;
+    background-color: var(--color-secundario);
+  }
+  */
+
+  .section {
+    padding: 4rem 1rem;
   }
 }
+
